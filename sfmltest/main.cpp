@@ -3,7 +3,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(640, 480), "Lesson 3", sf::Style::Default);
+	sf::RenderWindow window(sf::VideoMode(640, 480), "Lesson 4", sf::Style::Default);
 	
 	sf::Image heroimage;
 	heroimage.loadFromFile("images/hero.png");
@@ -13,6 +13,7 @@ int main()
 	
 	sf::Sprite herosprite;
 	herosprite.setTexture(herotexture);
+	herosprite.setTextureRect(sf::IntRect(0, 192, 96, 96));
 	herosprite.setPosition(50, 25);
 
 	while (window.isOpen())
