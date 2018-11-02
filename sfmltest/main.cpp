@@ -1,10 +1,19 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "Lesson 1. kychka-pc.ru");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	sf::RenderWindow window(sf::VideoMode(640, 480), "Lesson 3", sf::Style::Default);
+	
+	sf::Image heroimage;
+	heroimage.loadFromFile("images/hero.png");
+	
+	sf::Texture herotexture;
+	herotexture.loadFromImage(heroimage);
+	
+	sf::Sprite herosprite;
+	herosprite.setTexture(herotexture);
+	herosprite.setPosition(50, 25);
 
 	while (window.isOpen())
 	{
@@ -16,9 +25,12 @@ int main()
 		}
 		
 		window.clear();
-		window.draw(shape);
+		window.draw(herosprite);
 		window.display();
 	}
+
+	
+	//system("pause");
 
 	return 0;
 }
