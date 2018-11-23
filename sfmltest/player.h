@@ -1,7 +1,9 @@
-#pragma once
+#ifndef PLAYER
+#define PLAYER
 #include <SFML\Graphics.hpp>
 
-class Player {
+class Player 
+{
 private: float x, y;
 public:
 	float w, h, dx, dy, speed;
@@ -12,7 +14,10 @@ public:
 	sf::Sprite sprite;
 
 	Player(sf::String F, float X, float Y, float W, float H);
+	void interactionWithMap();
 	void update(float time);
 	float getplayercoordinateX();
 	float getplayercoordinateY();
 };
+
+#endif

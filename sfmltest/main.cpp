@@ -1,31 +1,96 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <time.h>
-#include "map.h"
-#include <random>
 #include "view.h"
 #include "player.h"
+#include "map.h"
 
 using namespace sf;
 
+/*class Player {
+private: float x, y;
+public:
+	float w, h, dx, dy, speed;
+	int dir;
+	String File;
+	Image image;
+	Texture texture;
+	Sprite sprite;
+	Player(String F, float X, float Y, float W, float H) {
+		dx = 0; dy = 0; speed = 0; dir = 0;
+		File = F;
+		w = W; h = H;
+		image.loadFromFile("images/" + File);
+		image.createMaskFromColor(Color(41, 33, 59));
+		texture.loadFromImage(image);
+		sprite.setTexture(texture);
+		x = X; y = Y;
+		sprite.setTextureRect(IntRect(0, 0, w, h));
+	}
+	void update(float time)
+	{
+		switch (dir)
+		{
+		case 0: dx = speed; dy = 0; break;
+		case 1: dx = -speed; dy = 0; break;
+		case 2: dx = 0; dy = speed; break;
+		case 3: dx = 0; dy = -speed; break;
+		}
+
+		x += dx * time;
+		y += dy * time;
+
+		speed = 0;
+		sprite.setPosition(x, y);
+		interactionWithMap();
+	}
+
+	void interactionWithMap()
+	{
+
+		for (int i = y / 32; i < (y + h) / 32; i++)
+			for (int j = x / 32; j < (x + w) / 32; j++)
+			{
+				if (TileMap[i][j] == '0')
+				{
+					if (dy > 0)	y = i * 32 - h;
+					if (dy < 0)	y = i * 32 + 32;
+					if (dx > 0)	x = j * 32 - w;
+					if (dx < 0)	x = j * 32 + 32;
+				}
+
+				if (TileMap[i][j] == 's')
+				{
+					x = 300; y = 300;
+					TileMap[i][j] = ' ';
+				}
+			}
+	}
+
+	float getplayercoordinateX()
+	{
+		return x;
+	}
+	float getplayercoordinateY()
+	{
+		return y;
+	}	
+};*/
+
 int main()
 {
-
 	sf::RenderWindow window(sf::VideoMode(640, 480), "Lesson SFML");
 	view.reset(sf::FloatRect(0, 0, 640, 480));
 	float CurrentFrame = 0;
 	sf::Clock clock;
-	
 	Image map_image;
 	map_image.loadFromFile("images/map.png");
 	Texture map;
 	map.loadFromImage(map_image);
 	Sprite s_map;
 	s_map.setTexture(map);
-
 	Player p("hero.png", 250, 250, 96.0, 96.0);
-
-	
+		
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -87,6 +152,7 @@ int main()
 				s_map.setPosition(j * 32, i * 32);
 				window.draw(s_map);
 			}
+	
 		window.draw(p.sprite);
 
 		window.display();
@@ -94,6 +160,5 @@ int main()
 
 	
 	//system("pause");
-
 	return 0;
 }
