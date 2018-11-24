@@ -7,7 +7,7 @@ class Player
 private: float x, y;
 public:
 	float w, h, dx, dy, speed;
-	int dir;
+	int dir, pScore;
 	sf::String File;
 	sf::Image image;
 	sf::Texture texture;

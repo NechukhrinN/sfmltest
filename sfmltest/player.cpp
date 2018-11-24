@@ -3,7 +3,7 @@
 
 Player::Player(sf::String F, float X, float Y, float W, float H)
 {
-	dx = 0; dy = 0; speed = 0;
+	dx = 0; dy = 0; speed = 0; pScore = 0;
 	File = F;
 	w = W; h = H;
 	image.loadFromFile("images/" + File);
@@ -30,7 +30,8 @@ void Player::interactionWithMap()
 
 			if (TileMap[i][j] == 's')
 			{
-				x = 300; y = 300;
+				pScore++;
+				//x = 300; y = 300;
 				TileMap[i][j] = ' ';
 			}
 		}
