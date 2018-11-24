@@ -4,6 +4,8 @@
 Player::Player(sf::String F, float X, float Y, float W, float H)
 {
 	dx = 0; dy = 0; speed = 0; pScore = 0;
+	health = 100;
+	life = true;
 	File = F;
 	w = W; h = H;
 	image.loadFromFile("images/" + File);
@@ -31,9 +33,21 @@ void Player::interactionWithMap()
 			if (TileMap[i][j] == 's')
 			{
 				pScore++;
-				//x = 300; y = 300;
 				TileMap[i][j] = ' ';
 			}
+
+			if (TileMap[i][j] == 'f')
+			{
+				health -= 40;
+				TileMap[i][j] = ' ';
+			}
+			
+			if (TileMap[i][j] == 'h')
+			{
+				health += 20;
+				TileMap[i][j] = ' ';
+			}
+
 		}
 }
 
@@ -52,6 +66,11 @@ void Player::update(float time)
 	speed = 0;
 	sprite.setPosition(x, y);
 	interactionWithMap();
+	if (health <= 0)
+	{
+		life = false;
+		speed = 0;
+	}
 }
 
 

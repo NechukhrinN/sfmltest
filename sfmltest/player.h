@@ -6,8 +6,9 @@ class Player
 {
 private: float x, y;
 public:
+	bool life;
+	int dir, pScore, health;
 	float w, h, dx, dy, speed;
-	int dir, pScore;
 	sf::String File;
 	sf::Image image;
 	sf::Texture texture;
